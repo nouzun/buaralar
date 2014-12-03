@@ -1,5 +1,17 @@
 from django.contrib import admin
+from django.contrib.admin import forms
 from posts.models import Post, Category, Event, Place, Ad
+import datetime
+
+# class EventAdminForm(forms.Form):
+#     class Meta:
+#         model = Event
+#
+#     def clean(self):
+#         date = self.cleaned_data['event_date_begin']
+#         if date < datetime.date.today():
+#             raise forms.ValidationError("The date cannot be in the past!")
+#         return date
 
 class EventInline(admin.TabularInline):
     model = Event

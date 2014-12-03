@@ -1,0 +1,11 @@
+{
+  "menu": {
+    "home": "Ana Sayfa:",
+    "about": "Hakkında:",
+    "contact": "İletişim"
+  },
+
+  "headline": "Data:",
+  "headline_1": "Daten Common:",
+  "headline_2": "Daten Specific:"
+}
