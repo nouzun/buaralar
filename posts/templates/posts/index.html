@@ -20,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#" data-i18n="site_name">Buaralar Istanbul</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -50,7 +50,7 @@
                         <div class="col-xs-6 col-lg-4">
                           <h2>{{ event.title_text }}</h2>
                           <p>{{ event.description_text }}</p>
-                          <p><a class="btn btn-default" href="/posts/{{ event.id }}/" role="button">View details &raquo;</a></p>
+                          <p><a class="btn btn-default" href="/posts/{{ event.id }}/" role="button" data-i18n="view_details">View details &raquo;</a></p>
                         </div><!--/.col-xs-6.col-lg-4-->
                     {% endfor %}
                 {% else %}
@@ -61,9 +61,9 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="list-group">
-            <a href="#" class="list-group-item active">Bugün</a>
-            <a href="#" class="list-group-item">Yarın</a>
-            <a href="#" class="list-group-item">Öbür Gün</a>
+            <a href="#" class="list-group-item active" data-i18n="today">Bugün</a>
+            <a href="#" class="list-group-item" data-i18n="tomorrow">Yarın</a>
+            <a href="#" class="list-group-item" data-i18n="day.{{ third_day }}">Öbür Gün</a>
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
@@ -71,7 +71,7 @@
       <hr>
 
       <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; <a href="#" data-i18n="site_address">Buaralar.com</a> {{ this_year }}</p>
       </footer>
 
     </div><!--/.container-->

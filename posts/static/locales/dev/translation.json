@@ -1,10 +1,23 @@
 {
+  "site_name": "Buaralar Istanbul",
+  "site_address": "Buaralar.com",
   "menu": {
-    "home": "Ana Sayfa:",
-    "about": "Hakkında:",
-    "contact": "İletişim"
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
   },
-
+  "day": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
+  "today": "Today",
+  "tomorrow": "Tomorrow",
+  "view_details": "View details »",
   "headline": "Data:",
   "headline_1": "Daten Common:",
   "headline_2": "Daten Specific:"
