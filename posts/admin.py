@@ -1,11 +1,15 @@
 from django.contrib import admin
+from easy_thumbnails.widgets import ImageClearableFileInput
 from posts.models import Post, Category, Event, Place, Ad
-from image_cropping import ImageCroppingMixin
+from easy_thumbnails.fields import ThumbnailerField
 
 class EventInline(admin.TabularInline):
     model = Event
 
-class EventAdmin(ImageCroppingMixin, admin.ModelAdmin):
+class EventAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+            ThumbnailerField: {'widget': ImageClearableFileInput},
+    }
     readonly_fields = ('user',)
     fieldsets = [
         ("Title",            {'fields': ['title_text']}),
@@ -25,7 +29,7 @@ class EventAdmin(ImageCroppingMixin, admin.ModelAdmin):
 
     class Media:
         js = ('http://code.jquery.com/jquery.min.js',
-              '/static/js/jquery.charCount.js',)
+              'posts/js/jquery.charCount.js',)
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         field = super(EventAdmin, self).formfield_for_dbfield(db_field, **kwargs)
@@ -50,7 +54,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
     class Media:
         js = ('http://code.jquery.com/jquery.min.js',
-              '/static/js/jquery.charCount.js',)
+              'posts/js/jquery.charCount.js',)
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         field = super(CategoryAdmin, self).formfield_for_dbfield(db_field, **kwargs)
