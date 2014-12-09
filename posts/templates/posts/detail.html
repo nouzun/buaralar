@@ -1,4 +1,5 @@
-<div class="jumbotron">
-    <h1>{{ event.title_text }}</h1>
-    <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-</div>
+{% load thumbnail %}
+
+<img src="{{ selected_event.image|thumbnail_url:'post_image_big' }}" alt="">
+<span class="post_title_selected">{{ selected_event.title_text }}</span>
+<p>{{ selected_event.description_text }}</p>
