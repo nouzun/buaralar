@@ -2,4 +2,30 @@
 
 <img src="{{ selected_event.image|thumbnail_url:'post_image_big' }}" alt="">
 <span class="post_title_selected">{{ selected_event.title_text }}</span>
-<p>{{ selected_event.description_text }}</p>
+<table class="table table-striped selected-post">
+    <tr>
+        <td class="col-md-2"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>&nbsp;<span data-i18n="what">What?</span></td>
+        <td class="col-md-4"><span>{{ selected_event.category.description_text }}</span></td>
+        <td class="col-md-2"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;<span data-i18n="when">When?</span></td>
+        <td class="col-md-4">
+            <span>{{ selected_event.event_date_begin|date:"H:i" }}</span>
+            {% if selected_event.event_date_end %}
+                <span> - {{ selected_event.event_date_end|date:"H:i" }}</span>
+            {% endif %}
+            {% if selected_event.get_date %}
+                <span data-i18n="{{ selected_event.get_date }}"></span>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-md-2"><span class="glyphicon glyphicon-road" aria-hidden="true"></span>&nbsp;<span data-i18n="where">Where?</span></td>
+        <td class="col-md-4"><span>{{ selected_event.location_text }}</span></td>
+        <td class="col-md-2"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>&nbsp;<span data-i18n="how_much">How much?</span></td>
+        <td class="col-md-4">
+            <span>{{ selected_event.price_low }} TL</span>
+            {% if selected_event.price_high %}
+                <span> - {{ selected_event.price_high }} TL</span>
+            {% endif %}
+        </td>
+    </tr>
+</table>

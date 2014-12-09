@@ -2,15 +2,17 @@
  * Style tweaks
  * --------------------------------------------------
  */
+@import url("//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
 html,
 body {
+  font-family: 'Source Sans Pro', sans-serif;
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 body {
   padding-top: 70px;
 }
 footer {
-  padding: 30px 0;
+  padding: 20px 0;
 }
 
 .post_title {
@@ -23,6 +25,28 @@ footer {
 }
 
 .selected {
+  background-color: mistyrose;
+}
+
+div.selected-post {
+  padding-right: 60px;
+  padding-left: 60px;
+  border-radius: 6px;
+  padding: 30px 15px 15px 15px;
+  margin-bottom: 15px;
+  color: inherit;
+  background-color: #eeeeee;
+}
+
+table.selected-post {
+  margin-bottom: 0px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+div.clickable:hover {
   background-color: mistyrose;
 }
 

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from easy_thumbnails.fields import ThumbnailerImageField
 from easy_thumbnails.files import get_thumbnailer
+import datetime
 
 class Post(models.Model):
     title_text = models.CharField(max_length=32)
@@ -29,6 +30,23 @@ class Event(Post):
     description_text = models.TextField(max_length=256, null=True)
     price_low = models.DecimalField(max_digits=6, decimal_places=2, null=True)
     price_high = models.DecimalField(max_digits=6, decimal_places=2, null=True)
+    @property
+    def get_date(self):
+        event_day = None
+        today = datetime.date.today()
+        tomorrow = (datetime.date.today() + datetime.timedelta(days=1))
+        third_day = (datetime.date.today() + datetime.timedelta(days=2))
+        forth_day = (datetime.date.today() + datetime.timedelta(days=3))
+        try:
+            if (self.event_date_begin.date() >= today) & (self.event_date_begin.date() < tomorrow):
+                event_day = "today"
+            elif (self.event_date_begin.date() >= tomorrow) & (self.event_date_begin.date() < third_day):
+                event_day = "tomorrow"
+            elif (self.event_date_begin.date() >= third_day) & (self.event_date_begin.date() < forth_day):
+                event_day = third_day.strftime("%A").lower()
+        except Exception as e:
+            print(e)
+        return event_day
 
 class Place(Post):
     CHEAP = '$'

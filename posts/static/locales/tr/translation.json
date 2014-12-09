@@ -1,6 +1,7 @@
 {
   "site_name": "Buaralar İstanbul",
   "site_address": "Buaralar.com",
+  "site_description": "Olağanüstü etkinlikler ve yerler.",
   "menu": {
     "home": "Ana Sayfa",
     "about": "Hakkında",
@@ -18,5 +19,8 @@
   "today": "Bugün",
   "tomorrow": "Yarın",
   "view_details": "Ayrıntılar »",
-
+  "what": "Ne?",
+  "where": "Nerede?",
+  "when": "Ne zaman?",
+  "how_much": "Ne kadar?"
 }

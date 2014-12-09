@@ -7,9 +7,9 @@
 <script type="text/javascript" src="{% bootstrap_jquery_url %}"></script>
 {% bootstrap_javascript %}
 <script type="text/javascript" src="{% static 'posts/js/i18next-1.7.5.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'posts/js/buaralar-ajax.js' %}"></script>
 <script type="text/javascript" src="{% static 'posts/js/translation.js' %}"></script>
-
+<script type="text/javascript" src="{% static 'posts/js/buaralar-ajax.js' %}"></script>
+<title></title>
 {% bootstrap_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'posts/css/offcanvas.css' %}" />
 
@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" data-i18n="site_name">Buaralar Istanbul</a>
+          <a class="navbar-brand" href="/posts" data-i18n="site_name">Buaralar Istanbul</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -42,7 +42,7 @@
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-            <div id="div_selected_post" class="jumbotron">
+            <div id="div_selected_post" class="selected-post">
                 {% if selected_event %}
                     {% include 'posts/detail.html' with selected_event=selected_event %}
                 {% endif %}
@@ -50,11 +50,10 @@
           <div class="row post-list">
                 {% if latest_event_list %}
                     {% for event in latest_event_list %}
-                        <div class="col-xs-6 col-lg-4 post-event {% ifequal event.id selected_event.id %} selected {% endifequal %}">
+                        <div class="col-xs-6 col-lg-4 post-event clickable {% ifequal event.id selected_event.id %} selected {% endifequal %}" data-postid="{{ event.id }}">
                           <img src="{{ event.image|thumbnail_url:'post_image_small' }}" alt="">
                           <h2 class="post_title">{{ event.title_text }}</h2>
                           <p>{{ event.description_text }}</p>
-                          <p><a class="btn btn-default btn-view_details" href="#" role="button" data-postid="{{ event.id }}" data-i18n="view_details">View details &raquo;</a></p>
                         </div><!--/.col-xs-6.col-lg-4-->
                     {% endfor %}
                 {% else %}
@@ -65,9 +64,9 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="list-group">
-            <a href="/posts/today" class="list-group-item active" data-i18n="today">Bugün</a>
-            <a href="/posts/tomorrow" class="list-group-item" data-i18n="tomorrow">Yarın</a>
-            <a href="/posts/nextday" class="list-group-item" data-i18n="day.{{ third_day }}">Öbür Gün</a>
+            <a href="/posts/today" class="list-group-item {% if selected_day == 'today' %}active{% endif %}" data-i18n="today">Bugün</a>
+            <a href="/posts/tomorrow" class="list-group-item {% if selected_day == 'tomorrow' %}active{% endif %}" data-i18n="tomorrow">Yarın</a>
+            <a href="/posts/nextday" class="list-group-item {% if selected_day == 'nextday' %}active{% endif %}" data-i18n="day.{{ third_day }}">Öbür Gün</a>
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
@@ -75,7 +74,7 @@
       <hr>
 
       <footer>
-        <p>&copy; <a href="#" data-i18n="site_address">Buaralar.com</a> {{ this_year }}</p>
+        <p>&copy; <a href="/posts" data-i18n="site_address">Buaralar.com</a> {{ this_year }}</p>
       </footer>
 
     </div><!--/.container-->

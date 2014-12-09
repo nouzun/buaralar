@@ -1,6 +1,7 @@
 {
   "site_name": "Buaralar Istanbul",
   "site_address": "Buaralar.com",
+  "site_description": "Unusual events and places.",
   "menu": {
     "home": "Home",
     "about": "About",
@@ -18,7 +19,8 @@
   "today": "Today",
   "tomorrow": "Tomorrow",
   "view_details": "View details »",
-  "headline": "Data:",
-  "headline_1": "Daten Common:",
-  "headline_2": "Daten Specific:"
+  "what": "What?",
+  "where": "Where?",
+  "when": "When?",
+  "how_much": "How much?"
 }
