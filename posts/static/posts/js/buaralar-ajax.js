@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+
     $('div.post-event').click(function(){
         var thisDiv = this;
         var postid = $(thisDiv).attr("data-postid");

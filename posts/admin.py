@@ -25,7 +25,7 @@ class EventAdmin(admin.ModelAdmin):
     list_filter = ['pub_date']
 
     counted_fields = ('title_text', 'description_text', 'location_text')
-    max_lengths = {'title_text': 32, 'description_text': 256, 'location_text': 128}
+    max_lengths = {'title_text': 32, 'description_text': 256, 'location_text': 96}
 
     class Media:
         js = ('http://code.jquery.com/jquery.min.js',
@@ -82,7 +82,7 @@ class PlaceAdmin(admin.ModelAdmin):
     list_filter = ['pub_date']
 
     counted_fields = ('title_text', 'description_text', 'location_text')
-    max_lengths = {'title_text': 32, 'description_text': 256, 'location_text': 128}
+    max_lengths = {'title_text': 32, 'description_text': 256, 'location_text': 96}
 
     class Media:
         js = ('http://code.jquery.com/jquery.min.js',

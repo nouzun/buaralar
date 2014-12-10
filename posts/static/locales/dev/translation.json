@@ -22,5 +22,13 @@
   "what": "What?",
   "where": "Where?",
   "when": "When?",
-  "how_much": "How much?"
+  "how_much": "How much?",
+  "form": {
+    "contact_form": "Contact Form",
+    "description": "To send us a message fill out the below form.",
+    "name": "Name",
+    "your_e-mail": "Your e-mail",
+    "message": "Message",
+    "submit": "Submit"
+  }
 }

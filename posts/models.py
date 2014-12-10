@@ -26,7 +26,7 @@ class Event(Post):
     category = models.ForeignKey(Category)
     event_date_begin = models.DateTimeField('event date begin')
     event_date_end = models.DateTimeField('event date end')
-    location_text = models.CharField(max_length=128, null=True)
+    location_text = models.CharField(max_length=96, null=True)
     description_text = models.TextField(max_length=256, null=True)
     price_low = models.DecimalField(max_digits=6, decimal_places=2, null=True)
     price_high = models.DecimalField(max_digits=6, decimal_places=2, null=True)
@@ -61,7 +61,7 @@ class Place(Post):
     )
     place_date_begin = models.DateTimeField('place date begin')
     place_date_end = models.DateTimeField('place date end')
-    location_text = models.CharField(max_length=128, null=True)
+    location_text = models.CharField(max_length=96, null=True)
     description_text = models.TextField(max_length=256, null=True)
     price_range = models.CharField(max_length=4, choices=PRICE_RANGE, default=CHEAP)
 

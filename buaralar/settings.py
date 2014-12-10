@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'bootstrap3',
     'posts',
+    'contact',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -121,3 +122,16 @@ THUMBNAIL_ALIASES = {
         'post_image_big': {'size': (728,103), 'crop':True},
     },
 }
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'onuruzun05@gmail.com'  # this is my email address, use yours
+EMAIL_HOST_PASSWORD = ''
+#EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']   # set environ yourself
+
+ADMINS = (
+    ('your_name', 'your_email'),   # email will be sent to your_email
+)
+
+MANAGERS = ADMINS

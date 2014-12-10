@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+<form class="form-horizontal" method="post">{% csrf_token %}
+  <fieldset>
+  <!-- Form Name -->
+  <legend><h2 data-i18n="form.contact_form">Contact Form</h2></legend>
+  <p data-i18n="form.description">To send us a message fill out the below form.</p>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="name" data-i18n="form.name">Name</label>
+    <div class="col-md-4">
+      <input id="name" name="name" type="text" placeholder="Your name" class="form-control input-md" required="">
+    </div>
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="email" data-i18n="form.your_e-mail">Your e-mail</label>
+    <div class="col-md-4">
+      <input id="email" name="email" type="text" placeholder="farrokh.bulsara@queen.com" class="form-control input-md" required="">
+    </div>
+  </div>
+
+  <!-- Textarea -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="body" data-i18n="form.message">Message</label>
+    <div class="col-md-4">
+      <textarea class="form-control" id="body" name="body"></textarea>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="submit"></label>
+    <div class="col-md-4">
+      <button id="submit" name="submit" class="btn btn-primary" data-i18n="form.submit">Submit</button>
+    </div>
+  </div>
+  </fieldset>
+</form>
+
+{% endblock content %}

@@ -22,5 +22,13 @@
   "what": "Ne?",
   "where": "Nerede?",
   "when": "Ne zaman?",
-  "how_much": "Ne kadar?"
+  "how_much": "Ne kadar?",
+  "form": {
+    "contact_form": "İletişim Formu",
+    "description": "Bize mesaj göndermek için formu doldurun.",
+    "name": "İsim",
+    "your_e-mail": "E-posta",
+    "message": "Mesaj",
+    "submit": "Gönder"
+  }
 }
