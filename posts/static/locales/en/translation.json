@@ -17,6 +17,11 @@
     "saturday": "Saturday",
     "sunday": "Sunday"
   },
+  "language": "Language",
+  "lang": {
+    "turkish": "Türkçe",
+    "english": "English"
+  },
   "today": "Today",
   "tomorrow": "Tomorrow",
   "view_details": "View details »",

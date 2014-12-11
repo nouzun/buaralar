@@ -17,6 +17,11 @@
     "saturday": "Cumartesi",
     "sunday": "Pazar"
   },
+  "language": "Dil",
+  "lang": {
+    "turkish": "Türkçe",
+    "english": "English"
+  },
   "today": "Bugün",
   "tomorrow": "Yarın",
   "view_details": "Ayrıntılar »",

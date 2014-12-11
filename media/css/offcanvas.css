@@ -81,6 +81,10 @@ table.selected-post {
 div.clickable:hover {
   opacity: 1;
 }
+
+a#a-dropdown-language {
+  color: white;
+}
 /*
 .col-xs-6,
 .col-lg-4 {
