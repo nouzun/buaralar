@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.views.generic import TemplateView
 from buaralar import settings
 
 urlpatterns = patterns('',
@@ -10,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^posts/', include('posts.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^contact/', include('contact.urls')),
+    url(r'^about', TemplateView.as_view(template_name='about.html'),name='about'),
 
 )
 

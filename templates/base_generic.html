@@ -10,8 +10,8 @@
 <script type="text/javascript" src="{% static 'posts/js/buaralar-ajax.js' %}"></script>
 <title></title>
 {% bootstrap_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'posts/css/offcanvas.css' %}" />
-    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/offcanvas.css" />
+    <nav class="navbar navbar-fixed-top navbar-inverse header" role="navigation">
         <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -24,8 +24,8 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#" data-i18n="menu.home">Home</a></li>
                   <!--
+                    <li class="active"><a href="#" data-i18n="menu.home">Home</a></li>
                     <li><a href="/about" data-i18n="menu.about">About</a></li>
                     <li><a href="/contact" data-i18n="menu.contact">Contact</a></li>
                   -->
@@ -37,13 +37,12 @@
     <div class="container">
         {% block content %}{% endblock %}
 
-        <hr>
-
         <footer class="footer">
             <div class="container">
+                <hr>
                 <p style="float:left">&copy; <a href="/posts" data-i18n="site_address">Buaralar.com</a> {{ this_year }}</p>
                 <p style="float: right">
-                    <a href="#"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp;<span data-i18n="menu.about">About</span></a>
+                    <a href="/about"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp;<span data-i18n="menu.about">About</span></a>
                     &nbsp;&nbsp;&nbsp;
                     <a href="/contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;<span data-i18n="menu.contact">Contact</span></a></p>
             </div>

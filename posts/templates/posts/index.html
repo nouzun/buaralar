@@ -16,9 +16,11 @@
                 {% if latest_event_list %}
                     {% for event in latest_event_list %}
                         <div class="col-xs-6 col-lg-4 post-event clickable {% ifequal event.id selected_event.id %} selected {% endifequal %}" data-postid="{{ event.id }}">
-                          <img src="{{ event.image|thumbnail_url:'post_image_small' }}" alt="">
-                          <h2 class="post_title">{{ event.title_text }}</h2>
-                          <p>{{ event.description_text }}</p>
+                            <div>
+                                <img src="{{ event.image|thumbnail_url:'post_image_small' }}" alt="">
+                                <h2 class="post_title">{{ event.title_text }}</h2>
+                                <p>{{ event.description_text }}</p>
+                            </div>
                         </div><!--/.col-xs-6.col-lg-4-->
                     {% endfor %}
                 {% else %}

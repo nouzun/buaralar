@@ -1,7 +1,8 @@
 {
   "site_name": "Buaralar İstanbul",
   "site_address": "Buaralar.com",
-  "site_description": "Olağanüstü etkinlikler ve yerler.",
+  "site_description": "Olağanüstü etkinlikler ve yerler",
+  "about_description": "Haftalar öncesinden plan yapmadan şehirde yaşanabilecek, kaçırmak istemeyeceğiniz ve harcadığınız zamana değecek alternatif / underground etkinlikleri duyuruyoruz.",
   "menu": {
     "home": "Ana Sayfa",
     "about": "Hakkında",

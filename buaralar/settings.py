@@ -105,8 +105,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "locales"),
     os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "media"),
-    os.path.join(MEDIA_URL, "uploaded_images/")
+    os.path.join(BASE_DIR, "media")
 )
 
 STATICFILES_FINDERS = (
