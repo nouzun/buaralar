@@ -35,10 +35,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'easy_thumbnails',
     'bootstrap3',
     'posts',
     'contact',
+    'ajaximage'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -134,3 +134,5 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
+AJAXIMAGE_AUTH_TEST = lambda u: True

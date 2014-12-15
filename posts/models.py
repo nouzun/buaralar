@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
-from easy_thumbnails.fields import ThumbnailerImageField
 from easy_thumbnails.files import get_thumbnailer
+from ajaximage.fields import AjaxImageField
 import datetime
 
 class Post(models.Model):
@@ -22,7 +22,10 @@ class Category(models.Model):
         return self.name_text
 
 class Event(Post):
-    image = ThumbnailerImageField(upload_to='post_images', blank=True)
+    image = AjaxImageField(upload_to='thumbnails')
+                               #max_height=200, #optional
+                               #max_width=200, # optional
+                               #crop=True # optional
     category = models.ForeignKey(Category)
     event_date_begin = models.DateTimeField('event date begin')
     event_date_end = models.DateTimeField('event date end')

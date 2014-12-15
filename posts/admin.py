@@ -1,15 +1,10 @@
 from django.contrib import admin
-from easy_thumbnails.widgets import ImageClearableFileInput
 from posts.models import Post, Category, Event, Place, Ad
-from easy_thumbnails.fields import ThumbnailerField
 
 class EventInline(admin.TabularInline):
     model = Event
 
 class EventAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-            ThumbnailerField: {'widget': ImageClearableFileInput},
-    }
     readonly_fields = ('user',)
     fieldsets = [
         ("Title",            {'fields': ['title_text']}),
@@ -103,7 +98,6 @@ class PlaceAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.user = request.user
         obj.save()
-
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Event, EventAdmin)
