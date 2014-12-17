@@ -1,30 +1,12 @@
 import os
 from django.forms import widgets
+from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
 from django.core.files.storage import default_storage
-
+from django.template import Context
 
 class AjaxImageWidget(widgets.TextInput):
-
-    html = """
-    <div class="ajaximage">
-        <a class="file-link" target="_blank" href="{file_url}">See original image</a>
-        <img class="file-img" id="jcrop-target" src="{file_url}">
-        <div id="preview-pane">
-            <div class="preview-container">
-                <img src="{file_url}" class="jcrop-preview" alt="Preview" />
-            </div>
-        </div>
-        <a class="file-remove" href="#remove">Remove</a>
-        <input class="file-path" type="hidden" value="{file_path}" id="{element_id}" name="{name}" />
-        <input type="file" class="file-input" />
-        <input class="file-dest" type="hidden" value="{upload_url}">
-        <div class="progress progress-striped active">
-            <div class="bar"></div>
-        </div>
-    </div>
-    """
 
     class Media:
         js = (
@@ -47,6 +29,7 @@ class AjaxImageWidget(widgets.TextInput):
         super(AjaxImageWidget, self).__init__(*args, **kwargs)
 
     def render(self, name, value, attrs=None):
+        t = get_template("ajaximage/jcrop_image_widget.html")
         final_attrs = self.build_attrs(attrs)
         element_id = final_attrs.get('id')
 
@@ -66,11 +49,16 @@ class AjaxImageWidget(widgets.TextInput):
 
         file_name = os.path.basename(file_url)
 
-        output = self.html.format(upload_url=upload_url,
-                             file_url=file_url,
-                             file_name=file_name,
-                             file_path=file_path,
-                             element_id=element_id,
-                             name=name)
+        substitutions = {
+            "upload_url": upload_url,
+            "file_url": file_url,
+            "file_name": file_name,
+            "file_path": file_path,
+            "element_id": element_id,
+            "input_name": name,
+            "image_value": value
+        }
 
-        return mark_safe(output)
+        c = Context(substitutions)
+
+        return t.render(c)
