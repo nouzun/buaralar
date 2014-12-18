@@ -39,6 +39,7 @@ class EventAdmin(admin.ModelAdmin):
         return field
 
     def save_model(self, request, obj, form, change):
+
         obj.user = request.user
         obj.save()
 

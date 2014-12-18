@@ -39,7 +39,7 @@
   position: absolute;
   z-index: 2000;
   top: 10px;
-  right: -280px;
+  left: 600px;
   padding: 6px;
   border: 1px rgba(0,0,0,.4) solid;
   background-color: white;
@@ -57,7 +57,7 @@
    area based on the size of the thumbnail preview,
    specified here */
 #preview-pane .preview-container {
-  width: 817px;
-  height: 170px;
+  width: 0px;
+  height: 0px;
   overflow: hidden;
 }

@@ -37,7 +37,18 @@ def ajaximage(request, upload_to=None, max_width=None, max_height=None, crop=Non
         name = os.path.join(upload_to or UPLOAD_PATH, safe_name)
         path = default_storage.save(name, file_)
         url = default_storage.url(path)
-
         return HttpResponse(json.dumps({'url': url, 'filename': path}))
 
     return HttpResponse(status=403)
+
+def remove(request, remove_from=None, file_name=None):
+    print "inside"
+    name = os.path.join(remove_from or UPLOAD_PATH, file_name)
+    image_path = os.path.join(settings.MEDIA_ROOT, name)
+    print name + "---" + image_path
+    try:
+        os.unlink(image_path)
+    except:
+        pass
+
+    return HttpResponse(json.dumps({'url': '', 'filename': ''}))

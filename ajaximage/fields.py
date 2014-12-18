@@ -17,6 +17,8 @@ class AjaxImageField(Field):
         max_height = kwargs.pop('max_height', 0)
         max_width = kwargs.pop('max_width', 0)
         crop = kwargs.pop('crop', False)
+        thumbnail_width = kwargs.pop('thumbnail_width', 0)
+        thumbnail_height = kwargs.pop('thumbnail_height', 0)
         crop = 1 if crop is True else 0
 
         if crop is 1 and (max_height is 0 or max_width is 0):
@@ -26,7 +28,9 @@ class AjaxImageField(Field):
             upload_to=upload_to,
             max_width=max_width,
             max_height=max_height,
-            crop=crop
+            crop=crop,
+            thumbnail_width=thumbnail_width,
+            thumbnail_height=thumbnail_height
         )
         super(AjaxImageField, self).__init__(*args, **kwargs)
 

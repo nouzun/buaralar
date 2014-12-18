@@ -6,8 +6,11 @@ except ImportError:
 urlpatterns = patterns(
     '',
     url(
-        '^upload/(?P<upload_to>.*)/(?P<max_width>\d+)/(?P<max_height>\d+)/(?P<crop>\d+)',
-        'ajaximage.views.ajaximage',
+        '^upload/(?P<upload_to>.*)/(?P<max_width>\d+)/(?P<max_height>\d+)/(?P<crop>\d+)', 'ajaximage.views.ajaximage',
         name='ajaximage'
+    ),
+    url(
+        '^remove/(?P<remove_from>.*)/(?P<file_name>.*)', 'ajaximage.views.remove',
+        name='remove'
     ),
 )

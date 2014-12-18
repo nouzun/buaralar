@@ -22,7 +22,7 @@ class Category(models.Model):
         return self.name_text
 
 class Event(Post):
-    image = AjaxImageField(upload_to='thumbnails')
+    image = AjaxImageField(upload_to='thumbnails', thumbnail_width=605, thumbnail_height=150)
                                #max_height=200, #optional
                                #max_width=200, # optional
                                #crop=True # optional

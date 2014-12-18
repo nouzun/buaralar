@@ -107,6 +107,7 @@
             switch(status) {
                 case 200:
                     update(el, data)
+                    imageUploaded();
                     break
                 case 400:
                 case 403:
@@ -121,10 +122,32 @@
     var removeUpload = function(e) {
         e.preventDefault()
 
-        var el = e.target.parentElement
-        el.querySelector('.file-path').value = ''
-        el.querySelector('.file-input').value = ''
-        el.className = 'ajaximage form-active'
+        var el = e.target.parentElement,
+        file = el.querySelector('.file-path').value,
+        dest = '/ajaximage/remove/' + file,
+        headers = {'X-CSRFToken': getCookie('csrftoken')}
+
+        request('POST', dest, '', headers, el, true, function(status, json){
+            disableSubmit(false)
+
+            var data = parseJson(json)
+
+            switch(status) {
+                case 200:
+                    update(el, data)
+                    hideJCropImage()
+                    el.querySelector('.file-path').value = ''
+                    el.querySelector('.file-input').value = ''
+                    el.className = 'ajaximage form-active'
+                    break
+                case 400:
+                case 403:
+                    error(el, data.error)
+                    break;
+                default:
+                    error(el, 'Sorry, could not remove image.')
+            }
+        })
     }
 
     var addHandlers = function(el) {

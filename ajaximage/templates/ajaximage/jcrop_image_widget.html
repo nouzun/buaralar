@@ -1,7 +1,17 @@
     <script type="text/javascript" language="javascript">
         jQuery(function($){
+            {% if file_url|length > 0 %}
+                imageUploaded();
+            {% endif %}
+        });
 
+        function hideJCropImage() {
+            $('.jcrop-holder').hide();
+        }
+
+        function imageUploaded() {
             // Create variables (in this scope) to hold the API and image size
+            $('.jcrop-holder').show();
             var jcrop_api,
                 boundx,
                 boundy,
@@ -11,14 +21,19 @@
                 $pcnt = $('#preview-pane .preview-container'),
                 $pimg = $('#preview-pane .preview-container img'),
 
-                xsize = $pcnt.width(),
-                ysize = $pcnt.height();
+                xsize = {{ thumbnail_width }},
+                ysize = {{ thumbnail_height }};
+
+            $pcnt.width({{ thumbnail_width }});
+            $pcnt.height({{ thumbnail_height }});
+
+            $('#id_jcrop-preview_{{ input_name }}').attr('src', $('#id_jcrop-target_{{ input_name }}').attr('src'));
 
             console.log('init',[xsize,ysize]);
-            $('#jcrop-target_{{ input_name }}').Jcrop({
-                setSelect: [ 60, 70, 540, 330 ],
+            $('#id_jcrop-target_{{ input_name }}').Jcrop({
+                setSelect: [ 0, 0, {{ thumbnail_width }}, {{ thumbnail_height }} ],
                 onChange: updatePreview,
-                onSelect: updatePreview,
+                onSelect: updateInput,
                 aspectRatio: xsize / ysize
             },function(){
               // Use the API to get the real image size
@@ -48,24 +63,34 @@
               }
             };
 
-        });
+            function updateInput(c)
+            {
+                $.extend(c, {
+                    image_width: $('#id_jcrop-target_{{ input_name }}').width(),
+                    image_height: $('#id_jcrop-target_{{ input_name }}').height()
+                });
+                $("#id_{{ input_name }}-crop-data").val(JSON.stringify(c));
+            };
+        }
     </script>
 
     <input type="hidden" name="{{input_name}}-original" value="{{image_value}}"  />
     <input type="hidden" name="{{input_name}}-crop-data" id="id_{{input_name}}-crop-data" />
     <div class="ajaximage">
         <a class="file-link" target="_blank" href="{{file_url}}">See original image</a>
-        <img class="file-img" id="jcrop-target_{{input_name}}" src="{{file_url}}">
-        <div id="preview-pane">
-            <div class="preview-container">
-                <img src="{{file_url}}" class="jcrop-preview" alt="Preview" />
-            </div>
-        </div>
+        <img class="file-img" id="id_jcrop-target_{{input_name}}" src="{{file_url}}">
+
         <a class="file-remove" href="#remove">Remove</a>
         <input class="file-path" type="hidden" value="{{file_path}}" id="{{element_id}}" name="{{input_name}}" />
         <input type="file" class="file-input" />
         <input class="file-dest" type="hidden" value="{{upload_url}}">
         <div class="progress progress-striped active">
             <div class="bar"></div>
+        </div>
+    </div>
+
+    <div id="preview-pane">
+        <div class="preview-container">
+            <img src="{{file_url}}" id="id_jcrop-preview_{{input_name}}" class="jcrop-preview" alt="Preview" />
         </div>
     </div>
