@@ -1,5 +1,6 @@
 import os
 import json
+import uuid
 from django.conf import settings
 from django.contrib.auth.decorators import user_passes_test
 from django.core.files.storage import default_storage
@@ -31,8 +32,7 @@ def ajaximage(request, upload_to=None, max_width=None, max_height=None, crop=Non
             return HttpResponse(data, content_type="application/json", status=403)
 
         file_ = resize(file_, max_width, max_height, crop)
-        file_name, extension = os.path.splitext(file_.name)
-        safe_name = '{0}{1}'.format(FILENAME_NORMALIZER(file_name), extension)
+        safe_name = get_file_path(file_.name)
 
         name = os.path.join(upload_to or UPLOAD_PATH, safe_name)
         path = default_storage.save(name, file_)
@@ -52,3 +52,8 @@ def remove(request, remove_from=None, file_name=None):
         pass
 
     return HttpResponse(json.dumps({'url': '', 'filename': ''}))
+
+def get_file_path(filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return filename

@@ -1,8 +1,12 @@
 import os
+import uuid
+
 from django.forms import widgets
 from django.template.loader import get_template
 from PIL import Image
 from StringIO import StringIO
+from buaralar import settings
+
 try:
     import json
 except ImportError:
@@ -36,23 +40,46 @@ class AjaxImageWidget(widgets.TextInput):
         self.thumbnail_height = kwargs.pop('thumbnail_height', 0)
         super(AjaxImageWidget, self).__init__(*args, **kwargs)
 
+    def get_thumb_name(instance, filename):
+        file_name, extension = os.path.splitext(filename)
+        filename = "%s_thumb%s" % (file_name, extension)
+        return filename
+
     def value_from_datadict(self, data, files, name):
         if data["%s-crop-data" % name]:
-            forig = default_storage.open(data['%s-original' % name])
+            image_name = data['%s' % name]
+            forig = default_storage.open(image_name)
             im = Image.open(forig)
-            width, height = im.size
-            cdata = json.loads(data['%s-crop-data' % name])
-            x_ratio = 1. * width / int(cdata['image_width'])
-            y_ratio = 1. * height / int(cdata['image_height'])
-            box = (cdata['x'] * x_ratio, cdata['y'] * y_ratio,
-                   cdata['x2'] * x_ratio, cdata['y2'] * y_ratio)
-            box = map(int, box)
-            crop = im.crop(box)
+            print "zaa: " +image_name
+            print default_storage.get_available_name(image_name)
+            if default_storage.get_available_name(image_name) != "None":
+                width, height = im.size
+                cdata = json.loads(data['%s-crop-data' % name])
+                x_ratio = 1. * width / int(cdata['image_width'])
+                y_ratio = 1. * height / int(cdata['image_height'])
+                box = (cdata['x'] * x_ratio, cdata['y'] * y_ratio,
+                       cdata['x2'] * x_ratio, cdata['y2'] * y_ratio)
+                print "width: " + str(width)
+                print "height: " + str(height)
+                print "cdata['image_width']: " + str(cdata['image_width'])
+                print "cdata['image_height']: " + str(cdata['image_height'])
+                print "x: " + str(cdata['x'])
+                print "y: " + str(cdata['y'])
+                print "x2: " + str(cdata['x2'])
+                print "y2: " + str(cdata['y2'])
+                print "x_ratio: " + str(x_ratio) +" y_ratio: "+ str(y_ratio)
+
+                box = map(int, box)
+                crop = im.crop(box)
+
+                crop.save(os.path.join(settings.MEDIA_ROOT, self.get_thumb_name(image_name)), im.format)
+
             sio = StringIO()
-            crop.save(sio, im.format)
             sio.seek(0)
             size = len(sio.read())
             sio.seek(0)
+            print "im.format.lower(): " + im.format.lower()
+            print "forig.name: " + forig.name + " name: " + name
             f = InMemoryUploadedFile(
                 sio, name, forig.name,
                 "image/%s" % im.format.lower(), size, "utf-8"
@@ -77,6 +104,7 @@ class AjaxImageWidget(widgets.TextInput):
         # value.url fails when rendering form with validation errors because
         # form value is not a FieldFile. Use storage.url and file_path - works
         # with FieldFile instances and string formdata
+        print "str(value): "+str(value)
         file_path = str(value) if value else ''
         file_url = default_storage.url(file_path) if value else ''
 
